@@ -30,10 +30,6 @@ const char rawEntropyEncoding[] = "()[]{}GHIJKLMNOPQRSTUVW:YZ"
 const int analogNoisePin = A0; // unconnected
 const int analogNoiseDelay = 25; // microseconds
 
-long discarded = 0;
-long zeros = 0;
-long ones = 0;
-
 byte getAnalogNoise() {
   delayMicroseconds(analogNoiseDelay);
   return bitRead(analogRead(analogNoisePin), 0);
@@ -46,8 +42,6 @@ bool getDebiasedAnalogNoise() {
     byte secondBit = getAnalogNoise();
 
     if (firstBit != secondBit) { return firstBit; }
-
-    discarded += 1;
   }
 }
 
