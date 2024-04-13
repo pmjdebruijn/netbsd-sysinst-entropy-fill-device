@@ -83,7 +83,11 @@ char getTestedRawEncodedEntropy() {
 void setup() {
   Keyboard.begin(KeyboardLayout_en_US);
 
-  delay(3000);
+  while (millis() < 2000) {
+    getTestedRawEncodedEntropy();
+  }
+
+  delay(500);
 
   Keyboard.println('a'); // a: Manually input random characters
   
