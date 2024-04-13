@@ -12,7 +12,8 @@
 ## Disadvantages
 * No tamper proofing whatsoever (Arduino bootloader present)
 * No device self verification implemented
-* No entropy health tests implemented
+* Limited entropy health tests implemented
+  - NIST SP 800-90B (4.4.1) Repetition Count Test
 * Generates raw entropy of limited quality (mitigated through quantity and compression)
 
 ## Advantages

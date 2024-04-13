@@ -55,8 +55,29 @@ byte getRawEntropy() {
   return rawEntropy;
 }
 
-char getRawEncodedEntropy() {
-  return rawEntropyEncoding[getRawEntropy()];
+byte repetitionValue = 255;
+byte repetitionCount = 1;
+
+byte getTestedRawEntropy() {
+  byte rawEntropy = getRawEntropy();
+
+  // NIST SP 800-90B (4.4.1) Repetition Count Test
+  if (rawEntropy == repetitionValue) {
+    repetitionCount++;
+    if (repetitionCount >= 4) {
+      while (true) {} // block
+    }
+  }
+  else {
+    repetitionValue = rawEntropy;
+    repetitionCount = 1;
+  }
+
+  return rawEntropy;
+}
+
+char getTestedRawEncodedEntropy() {
+  return rawEntropyEncoding[getTestedRawEntropy()];
 }
 
 void setup() {
@@ -69,7 +90,7 @@ void setup() {
   delay(500);
 
   for (int i = 0; i < 256; i++) {
-    Keyboard.print(getRawEncodedEntropy());
+    Keyboard.print(getTestedRawEncodedEntropy());
   }
 
   delay(500);
