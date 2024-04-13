@@ -1,17 +1,17 @@
 // MIT License
-// 
+//
 // Copyright (c) 2024 Pascal de Bruijn
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all
 // copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,7 +47,7 @@ bool getDebiasedRawData() {
 
 byte getRawEntropy() {
   byte rawEntropy = 0;
-  
+
   for (byte i = 0; i < 6; i++) {
     rawEntropy = (rawEntropy << 1) | getDebiasedRawData();
   }
@@ -102,7 +102,7 @@ void setup() {
   delay(500);
 
   Keyboard.println('a'); // a: Manually input random characters
-  
+
   delay(500);
 
   for (int i = 0; i < 256; i++) {
@@ -112,9 +112,9 @@ void setup() {
   delay(500);
 
   Keyboard.println();
- 
+
   delay(500);
-  
+
   Keyboard.end();
 }
 
