@@ -58,6 +58,9 @@ byte getRawEntropy() {
 byte repetitionValue = 255;
 byte repetitionCount = 1;
 
+int adaptiveProportionCount = 0;
+int adaptiveProportionTable[64] = { 0 };
+
 byte getTestedRawEntropy() {
   byte rawEntropy = getRawEntropy();
 
@@ -71,6 +74,15 @@ byte getTestedRawEntropy() {
   else {
     repetitionValue = rawEntropy;
     repetitionCount = 1;
+  }
+
+  // NIST SP 800-90B (4.4.2) Adaptive Proportion Test (without sliding window)
+  adaptiveProportionCount++;
+  adaptiveProportionTable[rawEntropy]++;
+  for (byte i = 0; i < 64; i++) {
+    if (adaptiveProportionTable[i] >= adaptiveProportionCount / 24 + 8) {
+      while (true) {} // block
+    }
   }
 
   return rawEntropy;

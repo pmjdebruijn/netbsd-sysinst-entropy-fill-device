@@ -14,6 +14,7 @@
 * No device self verification implemented
 * Limited entropy health tests implemented
   - NIST SP 800-90B (4.4.1) Repetition Count Test
+  - NIST SP 800-90B (4.4.2) Adaptive Proportion Test (without sliding window)
 * Generates raw entropy of limited quality (mitigated through quantity and compression)
 
 ## Advantages
