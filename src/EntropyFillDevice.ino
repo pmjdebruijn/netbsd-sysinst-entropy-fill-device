@@ -28,7 +28,7 @@ const char rawEntropyEncoding[] = "()[]{}GHIJKLMNOPQRSTUVW:YZ"
                                   "0123456789+-";
 
 const int analogNoisePin = A0; // unconnected
-const int analogNoiseDelay = 25; // microseconds
+const int analogNoiseDelay = 5; // microseconds
 
 byte getRawData() {
   delayMicroseconds(analogNoiseDelay);
@@ -105,7 +105,10 @@ void setup() {
 
   delay(500);
 
+  unsigned long startmillis = millis();
   for (int i = 0; i < 256; i++) {
+    while ((millis() - startmillis) < (unsigned long)(i*90)) {} // pace keyboard output
+
     Keyboard.print(getTestedRawEncodedEntropy());
   }
 
