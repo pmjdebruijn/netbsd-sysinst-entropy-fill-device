@@ -4,10 +4,15 @@
 > **USE AT YOUR OWN RISK:** This Arduino sketch is experimental and has only seen limited testing
 
 > [!IMPORTANT]
-> **INDEPENDENT**: The NetBSD Foundation or developers do not endorse this project
+> **INDEPENDENT**: The NetBSD Foundation or developers do NOT endorse this project
+
+> [!NOTE]
+> **ADC NOISE**: This device uses LSB ADC noise as it's main source of entropy
 
 ## Requirements
-* An Arduino Leonardo (ATmega32U4) compatible device (like the LilyGO F308)
+* An [Arduino Leonardo](https://docs.arduino.cc/hardware/leonardo/)
+  ([ATmega32U4](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ww1.microchip.com/downloads/en/devicedoc/atmel-7766-8-bit-avr-atmega16u4-32u4_datasheet.pdf&ved=2ahUKEwim8K6708GFAxWrhv0HHVBGB-gQFnoECBYQAQ&usg=AOvVaw0abz7nlPSlbrG9F25sY8_R))
+  compatible device (like the [LilyGO F308)](https://www.tindie.com/products/lilygo/lilygo-usb-microcontroller-atmega32u4/)
 
 ## Disadvantages
 * No tamper proofing whatsoever (Arduino bootloader present)
@@ -30,11 +35,12 @@
    - The two bits are discarded if they're the same
    - The two bits are different, the first is passed as raw entropy
 3. Six debiased bits are shifted into a near byte of raw entropy
-4. The six bits of raw debiased entropy are encoded into a modified Base64
-5. The encoded raw entropy is entered through a virtual keyboard function
-6. NetBSD SysInst conditions (see [src/usr.sbin/sysinst/util.c#entropy_add_manual](https://github.com/NetBSD/src/blob/netbsd-10/usr.sbin/sysinst/util.c#L1154))
+4. Limited health test are performed
+5. The six bits of raw debiased entropy are encoded into a modified Base64
+6. The encoded raw entropy is entered through a virtual keyboard function
+7. NetBSD SysInst conditions (see [src/usr.sbin/sysinst/util.c#entropy_add_manual](https://github.com/NetBSD/src/blob/netbsd-10/usr.sbin/sysinst/util.c#L1154))
    the raw entropy through SHA256
-7. NetBSD SysInst injects the conditioned entropy into the kernel entropy pool
+8. NetBSD SysInst injects the conditioned entropy into the kernel entropy pool
 
 ## Technical notes
 
@@ -52,10 +58,10 @@ that NetBSD readily supports, you may encounter the following screen:
 
 ![SysInst Entropy Enter 1](img/sysinst-entropy-enter-1.png)
 
-At this point plugin the NetBSD SysInst Entropy Fill Device, which will
-automatically proceed to this screen, and start entering the collected
-raw entropy through the virtual keyboard function:
+At this point plug in the NetBSD SysInst Entropy Fill Device, which will
+automatically proceed to the following screen, and start entering the
+collected raw entropy through the virtual keyboard function:
 
 ![SysInst Entropy Enter 2](img/sysinst-entropy-enter-2.png)
 
-When the device is finished it should exit the screen automatically.
+When the device is finished, it should exit the above screen automatically.
