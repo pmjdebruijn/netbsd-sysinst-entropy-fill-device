@@ -7,11 +7,11 @@
 > **INDEPENDENT**: The NetBSD Foundation or developers do NOT endorse this project
 
 > [!NOTE]
-> **ADC NOISE**: This device uses LSB ADC noise as it's main source of entropy
+> **ADC NOISE**: This device uses (LSB) ADC noise as it's main source of entropy
 
 ## Requirements
 * An [Arduino Leonardo](https://docs.arduino.cc/hardware/leonardo/)
-  ([ATmega32U4](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ww1.microchip.com/downloads/en/devicedoc/atmel-7766-8-bit-avr-atmega16u4-32u4_datasheet.pdf&ved=2ahUKEwim8K6708GFAxWrhv0HHVBGB-gQFnoECBYQAQ&usg=AOvVaw0abz7nlPSlbrG9F25sY8_R))
+  ([ATmega32U4](https://ww1.microchip.com/downloads/en/devicedoc/atmel-7766-8-bit-avr-atmega16u4-32u4_datasheet.pdf))
   compatible device (like the [LilyGO F308)](https://www.tindie.com/products/lilygo/lilygo-usb-microcontroller-atmega32u4/)
 
 ## Disadvantages
