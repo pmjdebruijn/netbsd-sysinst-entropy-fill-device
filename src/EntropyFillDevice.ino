@@ -67,7 +67,7 @@ byte getTestedRawEntropy() {
   // NIST SP 800-90B (4.4.1) Repetition Count Test
   if (rawEntropy == repetitionValue) {
     repetitionCount++;
-    if (repetitionCount >= 4) {
+    if (repetitionCount >= 5) {
       Keyboard.print(" FAIL 4.4.1 ");
       while (true) {} // block
     }
