@@ -48,8 +48,8 @@ The Base64 encoding is modified to limit the virtual keyboard from accidentally
 causing unwanted behavior for sysinst or the bourne shell if the device
 is inserted untimely.
 
-The device generates 1536 bits of debiased raw entropy, exceeding the required 256 bits
-by a factor of 6 while NIST SP 800-90C (4.2) recommends a factor of 2, with some caveats.
+The device generates 3072 bits of debiased raw entropy, exceeding the required 256 bits
+by a factor of 12 while NIST SP 800-90C (4.2) recommends a factor of 2, with some caveats.
 
 ## How to use
 
