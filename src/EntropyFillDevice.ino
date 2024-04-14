@@ -65,16 +65,16 @@ byte getTestedRawEntropy() {
   byte rawEntropy = getRawEntropy();
 
   // NIST SP 800-90B (4.4.1) Repetition Count Test
-  if (rawEntropy == repetitionValue) {
+  if (rawEntropy != repetitionValue) {
+    repetitionValue = rawEntropy;
+    repetitionCount = 1;
+  }
+  else {
     repetitionCount++;
     if (repetitionCount >= 5) {
       Keyboard.print(" FAIL 4.4.1 ");
       while (true) {} // block
     }
-  }
-  else {
-    repetitionValue = rawEntropy;
-    repetitionCount = 1;
   }
 
   // NIST SP 800-90B (4.4.2) Adaptive Proportion Test (without sliding window)
