@@ -68,6 +68,7 @@ byte getTestedRawEntropy() {
   if (rawEntropy == repetitionValue) {
     repetitionCount++;
     if (repetitionCount >= 4) {
+      Keyboard.print(" FAIL 4.4.1 ");
       while (true) {} // block
     }
   }
@@ -81,6 +82,7 @@ byte getTestedRawEntropy() {
   adaptiveProportionTable[rawEntropy]++;
   for (byte i = 0; i < 64; i++) {
     if (adaptiveProportionTable[i] >= adaptiveProportionCount / 24 + 8) {
+      Keyboard.print(" FAIL 4.4.2 ");
       while (true) {} // block
     }
   }
