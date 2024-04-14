@@ -15,7 +15,7 @@
 * Limited entropy health tests implemented
   - NIST SP 800-90B (4.4.1) Repetition Count Test
   - NIST SP 800-90B (4.4.2) Adaptive Proportion Test (without sliding window)
-* Generates raw entropy of limited quality (mitigated through quantity and compression)
+* Generates raw entropy of limited quality (mitigated through conditioning in NetBSD SysInst)
 
 ## Advantages
 * Code is very easily understood
@@ -32,18 +32,18 @@
 3. Six debiased bits are shifted into a near byte of raw entropy
 4. The six bits of raw debiased entropy are encoded into a modified Base64
 5. The encoded raw entropy is entered through a virtual keyboard function
-6. NetBSD SysInst compresses (see [src/usr.sbin/sysinst/util.c#entropy_add_manual](https://github.com/NetBSD/src/blob/netbsd-10/usr.sbin/sysinst/util.c#L1154))
+6. NetBSD SysInst conditions (see [src/usr.sbin/sysinst/util.c#entropy_add_manual](https://github.com/NetBSD/src/blob/netbsd-10/usr.sbin/sysinst/util.c#L1154))
    the raw entropy through SHA256
-7. NetBSD SysInst injects the compressed entropy into the kernel entropy pool
+7. NetBSD SysInst injects the conditioned entropy into the kernel entropy pool
 
 ## Technical notes
 
-The Base64 encoding is modified to prevent the virtual keyboard from accidentally
+The Base64 encoding is modified to limit the virtual keyboard from accidentally
 causing unwanted behavior for sysinst or the bourne shell if the device
 is inserted untimely.
 
 The device generates 1536 bits of debiased raw entropy, exceeding the required 256 bits
-by a factor of 6 while NIST SP 800-90C (4.2) recommends a factor 2, with some caveats.
+by a factor of 6 while NIST SP 800-90C (4.2) recommends a factor of 2, with some caveats.
 
 ## How to use
 
