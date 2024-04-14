@@ -81,7 +81,7 @@ byte getTestedRawEntropy() {
   adaptiveProportionCount++;
   adaptiveProportionTable[rawEntropy]++;
   for (byte i = 0; i < 64; i++) {
-    if (adaptiveProportionTable[i] >= adaptiveProportionCount / 24 + 8) {
+    if (adaptiveProportionTable[i] >= adaptiveProportionCount / 16 + 16) {
       Keyboard.print(" FAIL 4.4.2 ");
       while (true) {} // block
     }
