@@ -90,7 +90,7 @@ byte getTestedRawEntropy() {
   return rawEntropy;
 }
 
-char getTestedRawEncodedEntropy() {
+char getEncodedTestedRawEntropy() {
   return rawEntropyEncoding[getTestedRawEntropy()];
 }
 
@@ -98,7 +98,7 @@ void setup() {
   Keyboard.begin(KeyboardLayout_en_US);
 
   while (millis() < 2000) {
-    getTestedRawEncodedEntropy();
+    getEncodedTestedRawEntropy();
   }
 
   delay(500);
@@ -111,7 +111,7 @@ void setup() {
   for (int i = 0; i < 256; i++) {
     while ((millis() - startmillis) < (unsigned long)(i*90)) {} // pace keyboard output
 
-    Keyboard.print(getTestedRawEncodedEntropy());
+    Keyboard.print(getEncodedTestedRawEntropy());
   }
 
   delay(500);
